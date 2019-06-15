@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/backgroundstyle"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        >
+
+        <EditText
+            android:id="@+id/useremail"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_email_black_24dp"
+            android:ems="10"
+            android:inputType="textEmailAddress"
+            android:padding="10dp"
+            android:hint="email" />
+
+
+        <EditText
+
+            android:id="@+id/username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_person_black_24dp"
+            android:padding="10dp"
+            android:inputType="textPersonName"
+            android:hint="username" />
+
+        <EditText
+            android:id="@+id/phone"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="phone"
+            tools:drawableLeft="@drawable/ic_local_phone_black_24dp"
+            android:padding="10dp"
+            android:hint="enter phonenumber" />
+
+        <EditText
+            android:id="@+id/editText8"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_lock_black_24dp"
+            android:ems="10"
+            android:hint="password"
+            android:inputType="textPassword"
+            android:padding="10dp"
+            />
+
+        <EditText
+            android:id="@+id/editText9"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_lock_black_24dp"
+            android:ems="10"
+            android:hint="confirm password"
+            android:inputType="textPassword"
+            android:padding="10dp"
+            />
+
+        <!--<RadioGroup-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="horizontal"-->
+
+        <!--&gt;-->
+
+        <!--<RadioButton-->
+        <!--android:id="@+id/radioButton"-->
+        <!--style="@style/username_style"-->
+        <!--android:layout_width="130dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Male" />-->
+
+        <!--<RadioButton-->
+        <!--android:id="@+id/radioButton2"-->
+        <!--style="@style/username_style"-->
+        <!--android:layout_width="130dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Female"-->
+        <!--/>-->
+        <!--</RadioGroup>-->
+
+        <Button
+            android:id="@+id/button3"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CREATE ACCOUNT" />
+
+    </LinearLayout>
+    <ProgressBar
+        android:visibility="gone"
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true" />
+</RelativeLayout>
