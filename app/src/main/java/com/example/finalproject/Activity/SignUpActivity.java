@@ -18,6 +18,7 @@ import com.example.finalproject.API.LoginAPI;
 import com.example.finalproject.APIInterface;
 import com.example.finalproject.ApiClient;
 import com.example.finalproject.Application.App;
+import com.example.finalproject.Generic.Keys;
 import com.example.finalproject.PreConfig;
 import com.example.finalproject.R;
 import com.example.finalproject.RequestHandler;
@@ -211,6 +212,7 @@ public class SignUpActivity extends AppCompatActivity {
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.isSuccessful() && response.body() != null){
                     Log.d("lol", "onResponse: "+response.body());
+                    App.db().putBoolean(Keys.USER_LOGGED_IN, true);
                     Toast.makeText(SignUpActivity.this, "user created successfully", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(getApplicationContext(),MainActivity.class));
                 } else {

@@ -21,21 +21,26 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
+import com.example.finalproject.Application.App;
 import com.example.finalproject.Fragment.CategoriesFragment;
 import com.example.finalproject.Fragment.FavoriteFragment;
 import com.example.finalproject.Fragment.HomeFragment;
 import com.example.finalproject.Adapter.ListViewAdapter;
 import com.example.finalproject.Adapter.MainAdapter;
 import com.example.finalproject.Fragment.NearMeFragment;
+import com.example.finalproject.Generic.Keys;
 import com.example.finalproject.R;
 import com.example.finalproject.SingleHorizontal;
 
+import java.security.Key;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -48,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     //int[] icon;
     private ArrayList<Object> objects=new ArrayList<>();
 
-   // ArrayList<Model> arrayList = new ArrayList<Model>();
+   // ArrayList<Models> arrayList = new ArrayList<Models>();
 
 
     //String[] localguide={"Roshan","Pratisha","Prashant"};
@@ -76,6 +81,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView=findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        View headerView = navigationView.inflateHeaderView(R.layout.nav_header);
+
+        TextView userName = headerView.findViewById(R.id.userName);
+        TextView userEmail = headerView.findViewById(R.id.userEmail);
+
+        if (App.db().getBoolean(Keys.USER_LOGGED_IN)) {
+            userName.setText(App.db().getString(Keys.USER_NAME));
+            userEmail.setText(App.db().getString(Keys.USER_EMAIL));
+        } else {
+            userName.setText("Please Log In");
+            userEmail.setText("Please Log In");
+        }
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawer,toolbar,
                 R.string.navigation_drawer_open,R.string.navigation_drawer_close);
@@ -126,7 +144,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         listView = findViewById(R.id.listView);
 
         for (int i = 0 ; i < title.length; i++) {
-            Model model = new Model(title[i], description[i], icon[i]);
+            Models model = new Models(title[i], description[i], icon[i]);
             //bind all strings in an array
             arrayList.add(model);
         }

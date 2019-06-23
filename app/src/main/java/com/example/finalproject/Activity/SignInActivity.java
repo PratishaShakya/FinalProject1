@@ -12,8 +12,13 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.finalproject.API.LoginAPI;
 import com.example.finalproject.APIInterface;
 import com.example.finalproject.ApiClient;
+import com.example.finalproject.Application.App;
+import com.example.finalproject.Generic.Keys;
+import com.example.finalproject.Model.LoginResponse;
+import com.example.finalproject.Model.UserData;
 import com.example.finalproject.PreConfig;
 import com.example.finalproject.R;
 import com.example.finalproject.RequestHandler;
@@ -22,6 +27,7 @@ import com.example.finalproject.User;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.security.Key;
 import java.util.HashMap;
 
 import okhttp3.MultipartBody;
@@ -172,7 +178,7 @@ public class SignInActivity extends AppCompatActivity {
             final String email1 = email.getText().toString();
             final String password1 = password.getText().toString();
 
-            loginMethod(email1,password1);
+//            loginMethod(email1,password1);
 
             //validating inputs
             if (TextUtils.isEmpty(email1)){
@@ -184,6 +190,28 @@ public class SignInActivity extends AppCompatActivity {
                 password.setError("Please enter your password");
               password.requestFocus();
                 return;
+            } else {
+                LoginAPI loginAPI = App.adminRetrofit().create(LoginAPI.class);
+                loginAPI.loginUser("login",email1, password1).enqueue(new Callback<LoginResponse>() {
+                    @Override
+                    public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+                        if (response.isSuccessful() && response.body() != null){
+                            if (!response.body().error){
+                                UserData userData = response.body().normaluser;
+                                App.db().putString(Keys.USER_NAME, userData.username);
+                                App.db().putString(Keys.USER_EMAIL, userData.email);
+                                App.db().putBoolean(Keys.USER_LOGGED_IN, true);
+                                Toast.makeText(SignInActivity.this, "user logged successfully", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<LoginResponse> call, Throwable t) {
+
+                    }
+                });
             }
 
 

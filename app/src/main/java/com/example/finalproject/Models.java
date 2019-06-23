@@ -1,6 +1,6 @@
 package com.example.finalproject;
 
-public class Model {
+public class Models {
     String title;
 
     String desc;
@@ -8,7 +8,7 @@ public class Model {
 
     //constructor
 
-public Model(String title,String desc, int icon){
+public Models(String title, String desc, int icon){
     this.title=title;
     this.desc=desc;
     this.icon=icon;

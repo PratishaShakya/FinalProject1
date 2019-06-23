@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.finalproject.Activity.SearchActivity;
-import com.example.finalproject.Model;
+import com.example.finalproject.Models;
 import com.example.finalproject.R;
 
 import java.util.ArrayList;
@@ -21,17 +21,17 @@ public class ListViewAdapter extends BaseAdapter {
 //variable
     Context mContext;
     LayoutInflater inflater;
-    List<Model> modelList;
-    ArrayList<Model> arrayList;
+    List<Models> modelsList;
+    ArrayList<Models> arrayList;
     //constructor
 
 
-    public ListViewAdapter( Context context,List<Model> modelList) {
+    public ListViewAdapter( Context context,List<Models> modelsList) {
        this.mContext=context;
-        this.modelList = modelList;
+        this.modelsList = modelsList;
         inflater=LayoutInflater.from(mContext);
-        this.arrayList=new ArrayList<Model>();
-        this.arrayList.addAll(modelList);
+        this.arrayList=new ArrayList<Models>();
+        this.arrayList.addAll(modelsList);
     }
 
     public class  ViewHolder{
@@ -41,13 +41,13 @@ public class ListViewAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return modelList.size();
+        return modelsList.size();
     }
 
     @Override
     public Object getItem(int i) {
 
-        return modelList.get(i);
+        return modelsList.get(i);
     }
 
     @Override
@@ -74,12 +74,12 @@ public class ListViewAdapter extends BaseAdapter {
        }
        //set the results into textviews
 
-        holder.mTitleTv.setText(modelList.get(position).getTitle());
-       holder.mDescTv.setText(modelList.get(position).getDesc());
+        holder.mTitleTv.setText(modelsList.get(position).getTitle());
+       holder.mDescTv.setText(modelsList.get(position).getDesc());
 
        //set the results in imageview
 
-       holder.mIconTv.setImageResource(modelList.get(position).getIcon());
+       holder.mIconTv.setImageResource(modelsList.get(position).getIcon());
 
         //listview from click
 
@@ -87,7 +87,7 @@ public class ListViewAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
 
-if(modelList.get(position).getTitle().equals("Sports")){
+if(modelsList.get(position).getTitle().equals("Sports")){
     //start new activities
     Intent intent=new Intent(mContext, SearchActivity.class);
     intent.putExtra("actionBarTitle","Sports");
@@ -97,21 +97,21 @@ if(modelList.get(position).getTitle().equals("Sports")){
 
     mContext.startActivity(intent);
 }
-                if(modelList.get(position).getTitle().equals("Workshop")){
+                if(modelsList.get(position).getTitle().equals("Workshop")){
                     //start new activities
                     Intent intent=new Intent(mContext,SearchActivity.class);
                     intent.putExtra("actionBarTitle","Workshop");
                     intent.putExtra("contentTv","this is event workshop details");
                     mContext.startActivity(intent);
                 }
-                if(modelList.get(position).getTitle().equals("art")){
+                if(modelsList.get(position).getTitle().equals("art")){
                     //start new activities
                     Intent intent=new Intent(mContext,SearchActivity.class);
                     intent.putExtra("actionBarTitle","art");
                     intent.putExtra("contentTv","this is event art details");
                     mContext.startActivity(intent);
                 }
-                if(modelList.get(position).getTitle().equals("festival")){
+                if(modelsList.get(position).getTitle().equals("festival")){
                     //start new activities
                     Intent intent=new Intent(mContext,SearchActivity.class);
                     intent.putExtra("actionBarTitle","festival");
@@ -127,15 +127,15 @@ if(modelList.get(position).getTitle().equals("Sports")){
     //filter
     public void filter(String charText){
         charText=charText.toLowerCase(Locale.getDefault());
-        modelList.clear();
+        modelsList.clear();
         if (charText.length()==0){
-            modelList.addAll(arrayList);
+            modelsList.addAll(arrayList);
         }
         else {
-            for (Model model : arrayList)
+            for (Models models : arrayList)
             {
-                if (model.getTitle().toLowerCase(Locale.getDefault()).contains(charText)){
-                    modelList.add(model);
+                if (models.getTitle().toLowerCase(Locale.getDefault()).contains(charText)){
+                    modelsList.add(models);
                 }
             }
         }

@@ -1,5 +1,7 @@
 package com.example.finalproject.API;
 
+import com.example.finalproject.Model.LoginResponse;
+
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -15,4 +17,11 @@ public interface LoginAPI {
                                     @Field("username") String username,
                                     @Field("phone_no") String phone_no,
                                     @Field("password") String password);
+
+    @FormUrlEncoded
+    @POST("loginapi.php")
+    Call<LoginResponse> loginUser(@Query("apicall") String apiCall,
+                                  @Field("email") String email,
+                                  @Field("password") String password);
+
 }
