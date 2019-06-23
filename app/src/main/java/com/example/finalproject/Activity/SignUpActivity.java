@@ -191,8 +191,7 @@ public class SignUpActivity extends AppCompatActivity {
                    confirmpwd.setError("error");
                }else{
                    register(email,name,phone,pwd);
-                   Toast.makeText(SignUpActivity.this, "user created successfully", Toast.LENGTH_SHORT).show();
-                   startActivity(new Intent(getApplicationContext(),MainActivity.class));
+
                }
            }
 
@@ -212,11 +211,20 @@ public class SignUpActivity extends AppCompatActivity {
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.isSuccessful() && response.body() != null){
                     Log.d("lol", "onResponse: "+response.body());
+                    Toast.makeText(SignUpActivity.this, "user created successfully", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                } else {
+                    try {
+                        Log.d("lol", "onResponse: "+response.errorBody().string());
+                    } catch (Exception e){
+
+                    }
                 }
             }
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Log.d("lol", "onFailure: "+ t.getMessage());
 
             }
         });
