@@ -206,28 +206,42 @@ public class SignUpActivity extends AppCompatActivity {
      */
 
     public void register(String email,String name,String phone,String pwd) {
-        APIInterface registerInterface = ApiClient.getRetrofit().create(APIInterface.class);
-
-        RequestBody requestBody = new MultipartBody.Builder()
-                .setType(MultipartBody.FORM)
-                .addFormDataPart("email", email)
-                .addFormDataPart("username", name)
-
-                .addFormDataPart("phonenumber", phone)
-                .addFormDataPart("password", pwd)
-                .build();
-
-        registerInterface.performRegistration(requestBody,"signup").enqueue(new Callback<ResponseBody>() {
+        LoginAPI loginAPI = App.adminRetrofit().create(LoginAPI.class);
+        loginAPI.registerUser("signup",email,name,phone,pwd).enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                System.out.println("Response : " + response.body());
+                if (response.isSuccessful() && response.body() != null){
+                    Log.d("lol", "onResponse: "+response.body());
+                }
             }
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-                System.out.println("Failed...");
+
             }
         });
+//        APIInterface registerInterface = ApiClient.getRetrofit().create(APIInterface.class);
+//
+//        RequestBody requestBody = new MultipartBody.Builder()
+//                .setType(MultipartBody.FORM)
+//                .addFormDataPart("email", email)
+//                .addFormDataPart("username", name)
+//
+//                .addFormDataPart("phonenumber", phone)
+//                .addFormDataPart("password", pwd)
+//                .build();
+//
+//        registerInterface.performRegistration(requestBody,"signup").enqueue(new Callback<ResponseBody>() {
+//            @Override
+//            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+//                System.out.println("Response : " + response.body());
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ResponseBody> call, Throwable t) {
+//                System.out.println("Failed...");
+//            }
+//        });
     }
 
 
