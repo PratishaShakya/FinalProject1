@@ -10,6 +10,8 @@ import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.finalproject.R;
+
 public class CategoryActivity extends AppCompatActivity {
     //GridView gridView;
 

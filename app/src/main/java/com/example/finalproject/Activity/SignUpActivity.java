@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,6 +15,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.finalproject.API.LoginAPI;
+import com.example.finalproject.APIInterface;
 import com.example.finalproject.ApiClient;
 import com.example.finalproject.Application.App;
 import com.example.finalproject.PreConfig;
@@ -26,6 +28,8 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -47,45 +51,48 @@ public class SignUpActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
-       // setupUIViews();
+         setupUIViews();
 //if the user is already logged in we will directly start the profile activity
-       if (PreConfig.getInstance(this).isLoggedIn()) {
+      /*  if (PreConfig.getInstance(this).isLoggedIn()) {
             finish();
             startActivity(new Intent(this, MainActivity.class));
             return;
         }
+        */
         useremail = (EditText) findViewById(R.id.useremail);
         username = (EditText) findViewById(R.id.username);
         phonenumber = (EditText) findViewById(R.id.phone);
         password = (EditText) findViewById(R.id.editText8);
         confirmpwd = (EditText) findViewById(R.id.editText9);
-        createAccount= findViewById(R.id.button3);
-        createAccount.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        createAccount = findViewById(R.id.button3);
+     //  createAccount.setOnClickListener(new View.OnClickListener() {
+       //     @Override
+         //   public void onClick(View v) {
 
-               // if (validate()) {
-                    registerUser();
+                // if (validate()) {
+           //     registerUser();
                  /*   String emai =useremail.getText().toString();
                     String pass = password.getText().toString();
 
                     databaseconnection bg = new databaseconnection((View.OnClickListener) this);
                     bg.execute(emai,pass);
-               */ }
+               */
+         //   }
 
 
-        });
-        createAccount.setOnClickListener(new View.OnClickListener() {
-                                             @Override
-                                             public void onClick(View v) {
+     //   });
+
+        //    createAccount.setOnClickListener(new View.OnClickListener() {
+        //     @Override
+        //    public void onClick(View v) {
 //if user pressed on login
-                                                 //we will open the login screen
-                                                 finish();
-                                                 startActivity(new Intent(SignUpActivity.this, SignInActivity.class));
+        //we will open the login screen
+        //   finish();
+        //     startActivity(new Intent(SignUpActivity.this, SignInActivity.class));
 
-
-                                             }
-                                         });
+//
+ //   }
+    //     });
     // firebaseAuth=FirebaseAuth.getInstance();
        /* createAccount.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,10 +124,10 @@ public class SignUpActivity extends AppCompatActivity {
 
     });
 */
+
     ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("SignUp");
 }
-
 
   /*  private boolean checkAccountEmailExistInFirebase(String useremail){
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
@@ -135,15 +142,95 @@ public class SignUpActivity extends AppCompatActivity {
     }
     */
 
-  /*  private void setupUIViews(){
+   private void setupUIViews(){
         useremail = (EditText) findViewById(R.id.useremail);
         username = (EditText) findViewById(R.id.username);
         phonenumber = (EditText) findViewById(R.id.phone);
         password = (EditText) findViewById(R.id.editText8);
         confirmpwd = (EditText) findViewById(R.id.editText9);
         createAccount= findViewById(R.id.button3);
+       createAccount.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+
+               String email = useremail.getText().toString().trim();
+               String name = username.getText().toString().trim();
+               String phone = phonenumber.getText().toString().trim();
+               String pwd = password.getText().toString().trim();
+               String cpwd = confirmpwd.getText().toString().trim();
+
+               if (email.equals("")) {
+                   useremail.setError("Email is required");
+                   useremail.requestFocus();
+
+               }else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                   useremail.setError("Enter a valid mail");
+                   useremail.requestFocus();
+
+               }else if (name.equals("")) {
+                   username.setError("Username is required");
+                   useremail.requestFocus();
+
+               }else if (phone.equals("")) {
+                   phonenumber.setError("Phone number is required");
+                   phonenumber.requestFocus();
+
+               }else if (!Patterns.PHONE.matcher(phone).matches()) {
+                   phonenumber.setError("Enter a valid number");
+                   phonenumber.requestFocus();
+
+               }else if (pwd.equals("")) {
+                   password.setError("Password required");
+                   password.requestFocus();
+
+               }else if (cpwd.equals("")) {
+                   confirmpwd.setError("confirm password required");
+                   confirmpwd.requestFocus();
+
+               }else if (!pwd.equals(cpwd)) {
+                   confirmpwd.setError("error");
+               }else{
+                   register(email,name,phone,pwd);
+                   Toast.makeText(SignUpActivity.this, "user created successfully", Toast.LENGTH_SHORT).show();
+                   startActivity(new Intent(getApplicationContext(),MainActivity.class));
+               }
+           }
+
+       });
+   }
+
+
+
+    /*
+    create a method to upload data in server
+     */
+
+    public void register(String email,String name,String phone,String pwd) {
+        APIInterface registerInterface = ApiClient.getRetrofit().create(APIInterface.class);
+
+        RequestBody requestBody = new MultipartBody.Builder()
+                .setType(MultipartBody.FORM)
+                .addFormDataPart("email", email)
+                .addFormDataPart("username", name)
+
+                .addFormDataPart("phonenumber", phone)
+                .addFormDataPart("password", pwd)
+                .build();
+
+        registerInterface.performRegistration(requestBody,"signup").enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                System.out.println("Response : " + response.body());
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                System.out.println("Failed...");
+            }
+        });
     }
-*/
+
+
 
 
    /* private Boolean validate(){
@@ -170,20 +257,16 @@ public class SignUpActivity extends AppCompatActivity {
     }
 */
 
-    private void registerUser() {
+ /*   private void registerUser() {
         //first we will do the validations
         final String email = useremail.getText().toString();
         final String name = username.getText().toString();
         final String phone = phonenumber.getText().toString();
         final String pwd = password.getText().toString();
         final String cpwd = confirmpwd.getText().toString();
-        if (TextUtils.isEmpty(name)) {
-           username.setError("Please enter username");
-            username.requestFocus();
-            return;
-        }
 
-        else if (TextUtils.isEmpty(email)) {
+
+        if (TextUtils.isEmpty(email)) {
         useremail.setError("Please enter your email");
           useremail.requestFocus();
             return;
@@ -194,7 +277,11 @@ public class SignUpActivity extends AppCompatActivity {
            useremail.requestFocus();
             return;
         }
-
+         else if (TextUtils.isEmpty(name)) {
+            username.setError("Please enter username");
+            username.requestFocus();
+            return;
+        }
         else if (TextUtils.isEmpty(pwd)) {
             password.setError("Enter a password");
           password.requestFocus();
@@ -205,22 +292,59 @@ public class SignUpActivity extends AppCompatActivity {
             password.requestFocus();
             return;
         } else{
-            LoginAPI loginAPI = App.adminRetrofit().create(LoginAPI.class);
+         /*   LoginAPI loginAPI = App.adminRetrofit().create(LoginAPI.class);
+            RequestBody requestBody = new MultipartBody.Builder()
+                    .setType(MultipartBody.FORM)
+                    .addFormDataPart("email",email)
+                    .addFormDataPart("username",name)
+                    .addFormDataPart("phonenumber",phone)
+                    .addFormDataPart("password",pwd)
+                    .build();
             loginAPI.registerUser("signup",email,name,phone,pwd).enqueue(new Callback<ResponseBody>() {
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                     if (response.isSuccessful() && response.body() != null){
                         Log.d("lol", "onResponse: "+response.body());
+//                        Log.d("lol", "onResponse: "+response.body());
                     }
                 }
 
                 @Override
                 public void onFailure(Call<ResponseBody> call, Throwable t) {
+                    System.out.println("Failed...");
+                }
+            });*/
+         /*   APIInterface registerInterface = ApiClient.getRetrofit().create(APIInterface.class);
 
+            RequestBody requestBody = new MultipartBody.Builder()
+                    .setType(MultipartBody.FORM)
+                    .addFormDataPart("email",email)
+                    .addFormDataPart("username",name)
+                    .addFormDataPart("phonenumber",phone)
+                    .addFormDataPart("password",pwd)
+                    .build();
+
+           registerInterface.performUserLogin(requestBody,"signup").enqueue(new Callback<ResponseBody>() {
+                @Override
+                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                  //  System.out.println("Response : "+response.body());
+                    if (response.isSuccessful()){
+                        System.out.println(response.body());
+                        Toast.makeText(SignUpActivity.this, "Registration Success", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                    }else{
+                        Toast.makeText(SignUpActivity.this, "Failed", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
+                    System.out.println("Failed...");
                 }
             });
         }
-
+        }
+*/
         //if it passes all the validations
 
 //        class RegisterUser extends AsyncTask<Void, Void, String> {
@@ -304,8 +428,8 @@ public class SignUpActivity extends AppCompatActivity {
 //        //executing the async task
 //        RegisterUser ru = new RegisterUser();
 //        ru.execute();
-    }
+   }
 
-}
+
 
 

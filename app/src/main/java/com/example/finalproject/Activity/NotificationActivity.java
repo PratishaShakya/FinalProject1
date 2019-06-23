@@ -3,6 +3,8 @@ package com.example.finalproject.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.example.finalproject.R;
+
 public class NotificationActivity extends AppCompatActivity {
 
     @Override

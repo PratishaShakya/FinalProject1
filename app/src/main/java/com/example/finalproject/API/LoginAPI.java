@@ -9,7 +9,7 @@ import retrofit2.http.Query;
 
 public interface LoginAPI {
     @FormUrlEncoded
-    @POST("api.php")
+    @POST("loginapi.php")
     Call<ResponseBody> registerUser(@Query("apicall") String apiCall,
                                     @Field("email") String email,
                                     @Field("username") String username,

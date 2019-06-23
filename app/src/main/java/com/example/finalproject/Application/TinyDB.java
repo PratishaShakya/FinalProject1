@@ -190,7 +190,7 @@ public class TinyDB {
     /**
      * Get int value from SharedPreferences at 'key'. If key not found, return 'defaultValue'
      * @param key SharedPreferences key
-     * @param defaultValue int value returned if key was not found
+     //* @param defaultValue int value returned if key was not found
      * @return int value at 'key' or 'defaultValue' if key not found
      */
     public int getInt(String key) {
@@ -378,7 +378,7 @@ public class TinyDB {
     }
 
     /**
-     * Put long value into SharedPreferences with 'key' and save
+     * Put long value into SharedPrefere nces with 'key' and save
      * @param key SharedPreferences key
      * @param value long value to be added
      */

@@ -7,6 +7,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.finalproject.R;
+
 public class Listdataactivtiy extends AppCompatActivity {
 TextView name;
 ImageView image;
