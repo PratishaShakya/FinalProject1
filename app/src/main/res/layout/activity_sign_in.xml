@@ -4,8 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".Activity.SignInActivity"
-    android:background="@drawable/backgroundstyle">
+    android:background="@drawable/backgroundstyle"
+    tools:showIn="@layout/activity_sign_in"
+    android:orientation="vertical">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -51,22 +54,27 @@
 
         <TextView
             android:id="@+id/lblCreate"
-        android:textAlignment="center"
+            android:textAlignment="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="2dp"
             android:text="create evento account!" />
 
         <TextView
-android:textAlignment="center"
+            android:textAlignment="center"
             android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="forgot your password?"
-            android:layout_margin="2dp"
+            android:layout_margin="2dp" />
 
-
-            />
+        <TextView
+            android:textAlignment="center"
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Login as Organisor"
+            android:layout_margin="2dp" />
     </LinearLayout>
 
 

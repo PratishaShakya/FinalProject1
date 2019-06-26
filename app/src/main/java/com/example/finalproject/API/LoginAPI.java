@@ -23,5 +23,12 @@ public interface LoginAPI {
     Call<LoginResponse> loginUser(@Query("apicall") String apiCall,
                                   @Field("email") String email,
                                   @Field("password") String password);
-
+@FormUrlEncoded
+    @POST("evnt.php")
+    Call<ResponseBody> addevents(@Query("apicall") String apiCall,
+                                 @Field("title") String title,
+                                 @Field("description") String description,
+                                 @Field("start_time") String start_time,
+                                 @Field("venue") String venue
+                                 );
 }

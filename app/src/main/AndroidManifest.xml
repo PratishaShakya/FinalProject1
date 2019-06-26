@@ -9,14 +9,15 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
+        android:name=".Application.App"
         android:allowBackup="true"
         android:icon="@drawable/eventologo"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:name=".Application.App"
-        android:usesCleartextTraffic="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".Activity.OrganisorSignIn"></activity>
         <activity android:name=".Activity.CategoryActivity" />
         <activity android:name=".Activity.AddEventActivity" />
         <activity android:name=".Activity.HorizontalDetailActivity" />

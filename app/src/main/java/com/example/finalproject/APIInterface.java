@@ -19,5 +19,8 @@ Call<ResponseBody> performRegistration(@Body RequestBody body,@Query("apicall") 
    @POST("loginapi.php")
    Call<ResponseBody> performUserLogin(@Body RequestBody body, @Query("apicall") String apicall);
 
+   @POST("evnt.php")
+   Call<ResponseBody> performAddEvent(@Body RequestBody body,@Query("apicall") String apicall);
+
 
 }

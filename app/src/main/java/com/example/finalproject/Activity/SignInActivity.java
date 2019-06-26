@@ -50,6 +50,7 @@ public class SignInActivity extends AppCompatActivity {
     public Button login;
     public TextView create_Account;
     private TextView forgotPwd;
+    private TextView login_organisor;
     onLoginFormActivityListener loginFormActivityListener;
    public interface onLoginFormActivityListener{
        public void performRegister();
@@ -71,6 +72,7 @@ public class SignInActivity extends AppCompatActivity {
         login = (Button) findViewById(R.id.btnLogin);
         create_Account = (TextView) findViewById(R.id.lblCreate);
         forgotPwd = (TextView) findViewById(R.id.textView2);
+        login_organisor = (TextView) findViewById(R.id.textView3);
 //FirebaseUser user=firebaseAuth.getCurrentUser();
 //firebaseAuth=FirebaseAuth.getInstance();
 
@@ -129,7 +131,13 @@ public class SignInActivity extends AppCompatActivity {
             }
         });
 
-
+        login_organisor.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SignInActivity.this, OrganisorSignIn.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
@@ -195,20 +203,21 @@ public class SignInActivity extends AppCompatActivity {
                 loginAPI.loginUser("login",email1, password1).enqueue(new Callback<LoginResponse>() {
                     @Override
                     public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
-                        if (response.isSuccessful() && response.body() != null){
-                            if (!response.body().error){
+                        if (response.isSuccessful() && response.body() != null) {
+                            if (!response.body().error) {
                                 UserData userData = response.body().normaluser;
                                 App.db().putString(Keys.USER_NAME, userData.username);
                                 App.db().putString(Keys.USER_EMAIL, userData.email);
                                 App.db().putBoolean(Keys.USER_LOGGED_IN, true);
                                 Toast.makeText(SignInActivity.this, "user logged successfully", Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
                             }
                         }
                     }
 
                     @Override
                     public void onFailure(Call<LoginResponse> call, Throwable t) {
+                      //  Toast.makeText(SignInActivity.this, "user logged failed", Toast.LENGTH_SHORT).show();
 
                     }
                 });
