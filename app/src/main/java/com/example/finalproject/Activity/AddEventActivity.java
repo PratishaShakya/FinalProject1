@@ -10,9 +10,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.finalproject.API.EventAPI;
 import com.example.finalproject.API.LoginAPI;
 import com.example.finalproject.Application.App;
 import com.example.finalproject.Generic.Keys;
+import com.example.finalproject.Model.EventResponse;
 import com.example.finalproject.R;
 
 import okhttp3.ResponseBody;
@@ -85,10 +87,10 @@ public class AddEventActivity extends AppCompatActivity {
      */
 
         public void add(String title1,String description1,String start_time1,String venue1) {
-            LoginAPI loginAPI = App.adminRetrofit().create(LoginAPI.class);
-            loginAPI.addevents("evnt",title1,description1,start_time1,venue1).enqueue(new Callback<ResponseBody>() {
+            EventAPI eventAPI = App.adminRetrofit().create(EventAPI.class);
+            eventAPI.addevents(title1,description1,start_time1,venue1).enqueue(new Callback<EventResponse>() {
                 @Override
-                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                public void onResponse(Call<EventResponse> call, Response<EventResponse> response) {
                     if (response.isSuccessful() && response.body() != null){
                         Log.d("lol", "onResponse: "+response.body());
                         App.db().putBoolean(Keys.USER_LOGGED_IN, true);
@@ -104,7 +106,7 @@ public class AddEventActivity extends AppCompatActivity {
                 }
 
                 @Override
-                public void onFailure(Call<ResponseBody> call, Throwable t) {
+                public void onFailure(Call<EventResponse> call, Throwable t) {
                     Log.d("lol", "onFailure: "+ t.getMessage());
 
                 }

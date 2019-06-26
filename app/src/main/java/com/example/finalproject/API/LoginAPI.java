@@ -1,5 +1,6 @@
 package com.example.finalproject.API;
 
+import com.example.finalproject.Model.EventResponse;
 import com.example.finalproject.Model.LoginResponse;
 
 import okhttp3.ResponseBody;
@@ -25,10 +26,10 @@ public interface LoginAPI {
                                   @Field("password") String password);
 @FormUrlEncoded
     @POST("evnt.php")
-    Call<ResponseBody> addevents(@Query("apicall") String apiCall,
-                                 @Field("title") String title,
-                                 @Field("description") String description,
-                                 @Field("start_time") String start_time,
-                                 @Field("venue") String venue
+    Call<EventResponse> addevents(@Query("apicall") String apiCall,
+                                  @Field("title") String title,
+                                  @Field("description") String description,
+                                  @Field("start_time") String start_time,
+                                  @Field("venue") String venue
                                  );
 }

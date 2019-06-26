@@ -29,9 +29,9 @@ public class OrganisorSignIn extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_organisor_sign_in);
 
-        email = (EditText) findViewById(R.id.orgEmail);
-        password = (EditText) findViewById(R.id.orgPassword);
-        login = (Button) findViewById(R.id.orgLogin);
+        email = (EditText) findViewById(R.id.etEmail);
+        password = (EditText) findViewById(R.id.etPassword);
+        login = (Button) findViewById(R.id.btnLogin);
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
