@@ -3,7 +3,7 @@ package com.example.finalproject;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.support.v7.app.AlertDialog;
+import androidx.appcompat.app.AlertDialog;
 import android.view.View;
 
 import com.example.finalproject.Activity.MainActivity;

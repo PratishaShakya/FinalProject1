@@ -1,8 +1,8 @@
 package com.example.finalproject.Activity;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,13 +11,11 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.finalproject.API.EventAPI;
-import com.example.finalproject.API.LoginAPI;
-import com.example.finalproject.Application.App;
+import com.example.finalproject.Application.EventApp;
 import com.example.finalproject.Generic.Keys;
 import com.example.finalproject.Model.EventResponse;
 import com.example.finalproject.R;
 
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -74,7 +72,7 @@ public class AddEventActivity extends AppCompatActivity {
                     venue.requestFocus();
 
                 } else {
-                   add(title1, description1, start_time1, venue1);
+                   addevent(title1, description1, start_time1, venue1);
 
                 }
 
@@ -86,14 +84,14 @@ public class AddEventActivity extends AppCompatActivity {
     create a method to upload data in server
      */
 
-        public void add(String title1,String description1,String start_time1,String venue1) {
-            EventAPI eventAPI = App.adminRetrofit().create(EventAPI.class);
-            eventAPI.addevents(title1,description1,start_time1,venue1).enqueue(new Callback<EventResponse>() {
+        public void addevent(String title1,String description1,String start_time1,String venue1) {
+            EventAPI eventAPI = EventApp.adminRetrofit().create(EventAPI.class);
+            eventAPI.addevents("evnt",title1,description1,start_time1,venue1).enqueue(new Callback<EventResponse>() {
                 @Override
                 public void onResponse(Call<EventResponse> call, Response<EventResponse> response) {
                     if (response.isSuccessful() && response.body() != null){
                         Log.d("lol", "onResponse: "+response.body());
-                        App.db().putBoolean(Keys.USER_LOGGED_IN, true);
+                        EventApp.db().putBoolean(Keys.USER_EVENT, true);
                         Toast.makeText(AddEventActivity.this, "Event created successfully", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(getApplicationContext(),MainActivity.class));
                     } else {

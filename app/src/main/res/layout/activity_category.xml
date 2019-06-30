@@ -37,7 +37,7 @@
         android:id="@+id/gridView"
         android:padding="14dp">
 
-        <android.support.v7.widget.CardView
+        <androidx.cardview.widget.CardView
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_columnWeight="1"
@@ -55,23 +55,25 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:src="@drawable/band"
+                    android:layout_width="142dp"
+                    android:layout_height="73dp"
                     android:layout_gravity="center_horizontal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
+                    android:src="@drawable/band" />
                 <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:text="Music"
                     android:textAlignment="center"
                     android:textColor="@android:color/black"
-                    android:textStyle="bold"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:textStyle="bold" />
+
+
+
             </LinearLayout>
 
-        </android.support.v7.widget.CardView>
+        </androidx.cardview.widget.CardView>
 
-        <android.support.v7.widget.CardView
+        <androidx.cardview.widget.CardView
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_columnWeight="1"
@@ -92,7 +94,7 @@
                     android:src="@drawable/creative"
                     android:layout_gravity="center_horizontal"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="90dp" />
 
                 <TextView
                     android:text="Education"
@@ -103,8 +105,8 @@
                     android:layout_height="wrap_content" />
             </LinearLayout>
 
-        </android.support.v7.widget.CardView>
-        <android.support.v7.widget.CardView
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_columnWeight="1"
@@ -122,10 +124,10 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:src="@drawable/football"
-                    android:layout_gravity="center_horizontal"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="94dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/football" />
 
                 <TextView
                     android:text="Sports"
@@ -136,9 +138,9 @@
                     android:layout_height="wrap_content" />
             </LinearLayout>
 
-        </android.support.v7.widget.CardView>
+        </androidx.cardview.widget.CardView>
 
-        <android.support.v7.widget.CardView
+        <androidx.cardview.widget.CardView
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_columnWeight="1"
@@ -156,10 +158,10 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:src="@drawable/art"
-                    android:layout_gravity="center_horizontal"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="86dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/art" />
 
                 <TextView
                     android:text="Art"
@@ -170,8 +172,8 @@
                     android:layout_height="wrap_content" />
             </LinearLayout>
 
-        </android.support.v7.widget.CardView>
-        <android.support.v7.widget.CardView
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_columnWeight="1"
@@ -189,10 +191,10 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:src="@drawable/stage"
-                    android:layout_gravity="center_horizontal"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="81dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/stage" />
 
                 <TextView
                     android:text="Festival"
@@ -203,9 +205,9 @@
                     android:layout_height="wrap_content" />
             </LinearLayout>
 
-        </android.support.v7.widget.CardView>
+        </androidx.cardview.widget.CardView>
 
-        <android.support.v7.widget.CardView
+        <androidx.cardview.widget.CardView
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_columnWeight="1"
@@ -223,10 +225,10 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:src="@drawable/sale"
-                    android:layout_gravity="center_horizontal"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="86dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/sale" />
 
                 <TextView
                     android:text="Sale"
@@ -237,7 +239,7 @@
                     android:layout_height="wrap_content" />
             </LinearLayout>
 
-        </android.support.v7.widget.CardView>
+        </androidx.cardview.widget.CardView>
 
 
     </GridLayout>

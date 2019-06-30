@@ -2,20 +2,21 @@ package com.example.finalproject.Activity;
 
 
 import android.content.Intent;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
-import android.support.design.widget.BottomNavigationView;
-import android.support.design.widget.NavigationView;
-import android.support.v4.app.Fragment;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
+import com.example.finalproject.Map.MapsActivity;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationView;
+import androidx.fragment.app.Fragment;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.appcompat.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -40,7 +41,6 @@ import com.example.finalproject.Generic.Keys;
 import com.example.finalproject.R;
 import com.example.finalproject.SingleHorizontal;
 
-import java.security.Key;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -258,12 +258,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.mnuNotification) {
+     /*   if (id == R.id.mnuNotification) {
             Toast.makeText(this, "Notification menu is clicked", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(MainActivity.this, NotificationActivity.class));
-        } else if (id == R.id.mnuSignIn) {
+        }
+        */ if (id == R.id.mnuSignIn) {
             Toast.makeText(this, "SignIn menu is clicked", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(MainActivity.this, SignInActivity.class));
+        }
+        else if (id == R.id.mnuLocation) {
+            Toast.makeText(this, "Location menu is clicked", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(MainActivity.this, MapsActivity.class));
         }
         return super.onOptionsItemSelected(item);
 

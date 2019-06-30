@@ -1,36 +1,22 @@
 package com.example.finalproject.Activity;
 
 import android.content.Intent;
-import android.os.AsyncTask;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.finalproject.API.LoginAPI;
-import com.example.finalproject.APIInterface;
-import com.example.finalproject.ApiClient;
 import com.example.finalproject.Application.App;
 import com.example.finalproject.Generic.Keys;
-import com.example.finalproject.PreConfig;
 import com.example.finalproject.R;
-import com.example.finalproject.RequestHandler;
-import com.example.finalproject.User;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.HashMap;
-
-import okhttp3.MultipartBody;
-import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;

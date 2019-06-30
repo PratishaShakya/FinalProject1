@@ -4,4 +4,5 @@ public class EventResponse {
     public Boolean error;
     public String message;
     public EventData event;
+
 }

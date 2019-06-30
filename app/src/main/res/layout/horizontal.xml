@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <android.support.design.widget.BottomNavigationView
+        <com.google.android.material.bottomnavigation.BottomNavigationView
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_above="@+id/inner_recyclerView"
@@ -29,7 +29,7 @@
                 android:textStyle="bold"
                 android:textSize="20dp"/>
 
-        </android.support.design.widget.BottomNavigationView>
+        </com.google.android.material.bottomnavigation.BottomNavigationView>
 
 
 
@@ -37,7 +37,7 @@
 
     </LinearLayout>
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/inner_recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

@@ -8,10 +8,11 @@
         android:icon="@drawable/ic_login"
         android:title="SinIn"
         app:showAsAction="ifRoom" />
+
     <item
-        android:id="@+id/mnuNotification"
-        android:icon="@drawable/ic_notification"
-        android:title="Notification"
+        android:id="@+id/mnuLocation"
+        android:icon="@drawable/ic_location_on_black_24dp"
+        android:title="Location"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/app_bar_search"

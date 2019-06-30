@@ -1,14 +1,13 @@
 package com.example.finalproject.Activity;
 
 import android.content.Intent;
-import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,16 +18,7 @@ import com.example.finalproject.Application.App;
 import com.example.finalproject.Generic.Keys;
 import com.example.finalproject.Model.LoginResponse;
 import com.example.finalproject.Model.UserData;
-import com.example.finalproject.PreConfig;
 import com.example.finalproject.R;
-import com.example.finalproject.RequestHandler;
-import com.example.finalproject.User;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.security.Key;
-import java.util.HashMap;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -36,8 +26,6 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-import static com.example.finalproject.ApiClient.BASE_URL;
 
 /*import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;

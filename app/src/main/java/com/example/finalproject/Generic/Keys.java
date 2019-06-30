@@ -5,4 +5,7 @@ public interface Keys {
     String USER_LOGGED_IN = "USER_LOGGED_IN";
     String USER_NAME = "USER_NAME";
     String USER_EMAIL = "USER_EMAIL";
+    String USER_EVENT="USER_EVENT";
+    String EVENT_TOKEN = "EVENT_TOKEN";
+
 }
